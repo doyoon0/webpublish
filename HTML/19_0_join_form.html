@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join</title>
+    <style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 40px;
+  }
+
+  .form-container {
+    width: 450px;
+    margin: auto;
+    padding: 30px 40px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #222;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="number"],
+  input[type="date"],
+  input[type="file"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+
+  input[type="radio"],
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+
+  span {
+    margin-right: 15px;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+
+  .reset-btn,
+  .submit-btn {
+    width: 48%;
+    padding: 10px 0;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .reset-btn {
+    background-color: #888;
+  }
+
+  .submit-btn {
+    background-color: #0055ff;
+  }
+
+  .submit-btn:hover {
+    background-color: #003ecc;
+  }
+
+  .reset-btn:hover {
+    background-color: #666;
+  }
+
+  li > div {
+    font-weight: bold;
+    background-color: #0055ff;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    padding:  4px 8px;
+  }
+</style>
+
+</head>
+<body>
+    <div class="form-container">
+        <h1>회원가입</h1>
+
+        <form action="#" method="post">
+            <ul>
+                <li><div>필수항목</div></li>
+                <li>
+                    <label>아이디
+                        <input type="text" name="userid" required>
+                    </label>
+                </li>
+                <li>
+                    <label>비밀번호
+                        <input type="password" name="password" required>
+                    </label>
+                </li>
+                <li>
+                    <label>이메일
+                        <input type="email" name="email" placeholder="example@example.com" required>
+                    </label>
+                </li>
+                <li>
+                    <label>성명
+                        <input type="text" name="name" placeholder="홍길동" required>
+                    </label>
+                </li>
+                <li>
+                    <label>나이
+                        <input type="number" name="age" required>
+                    </label>
+                </li>
+                <li><div>당신에 대해서 알고 싶어요!</div></li>
+                <li>
+                    <label>취미를 선택해 주세요.</label>
+                    <input type="radio" name="hobby" value="game"> <span>게임하기</span>
+                    <input type="radio" name="hobby" value="music"> <span>음악듣기</span>
+                    <input type="radio" name="hobby" value="ice"> <span>아이스음료 마시기</span>
+                </li>
+                <li>
+                    <label for="">좋아하는 음료를 선택해 주세요. (중복선택가능)</label>
+                    <input type="checkbox" name=""> <span>쉐이크 종류 음료</span>
+                    <input type="checkbox" name=""> <span>티 종류 음료</span>
+                    <input type="checkbox" name=""> <span>커피 종류 음료</span>
+                </li>
+                <li>
+                    <label for="">동아리 참석 가능한 날짜 : 
+                        <input type="date" name="available_date">
+                    </label>
+                </li>
+                <li>
+                    <label for="">얼,죽,아에서 참여하고 싶은 모임은?
+                        <select name="group" id="">
+                            <option disabled selected>--선택해주세요--</option>
+                            <option value="coding">코딩 모임</option>
+                            <option value="study">스터디 모임</option>
+                            <option value="chat">수다 모임</option>
+                        </select>
+                    </label>
+                </li>    
+                <li>
+                    <label for="">포트폴리오 제출하기
+                        <button>업로드 하기</button>
+                    </label>                    
+                </li>
+                <li>
+                    <label for="">마지막으로 하고 싶은 말은?
+                        <textarea name="message" rows="4" id=""></textarea>
+                    </label>
+                </li>
+                <div class="button-group">
+                    <button type="reset" class="reset-btn">다시하기</button>
+                    <button type="submit" class="submit-btn">제출하기</button>
+                </div>
+            </ul>
+
+
+        </form>
+    </div>
+</body>
+</html>
