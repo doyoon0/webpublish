@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Style</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            border: 1px solid salmon;
+            background-color: yellow;
+            animation: changeColor 3s 0s 30; /* name, duration, delay, iteration-count */
+        }
+        @keyframes changeColor {
+            from {
+                background-color: white;
+            }
+            50% {
+                background-color: rgb(255, 225, 225);
+            }
+            to {
+                background-color: lightcoral;
+            }
+
+        }
+        .box-img {
+            width: 300px;
+            height: 200px;
+            background-image: url("../HTML/images/background_img2.png");
+            animation: boxImages 10s linear infinite;
+        }
+        @keyframes boxImages {
+            from {
+                opacity: 0;
+            }
+
+            30% {
+                opacity: 0.5;
+            }
+
+            60% {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+     
+
+        
+    </style>
+</head>
+<body>
+    <h1>Animation Style</h1>
+    <div class="box">box</div>
+    <div class="box-img"></div>
+</body>
+</html>

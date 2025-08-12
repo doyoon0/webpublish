@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    <style>
+        div.header-left {
+            position: relative;
+            width: 80%;
+            height: 350px;
+            background-color: antiquewhite;
+        }
+
+        .header-left img {
+            position: absolute;
+            left: 500px;
+            top: 50px;
+        }
+
+        .header-left ul { 
+            padding: 0; 
+            margin: 0;
+            position: absolute;
+            left: 200px;
+            top: 10px;
+        }
+        .header-left li { 
+            list-style: none;
+            float: left;
+            padding: 5px 10px;
+            background-color: rgb(209, 102, 83);
+        }
+
+        .header-left li a { 
+            color: #000000;
+            text-decoration: none;
+        }
+
+        .header-left li a:hover {
+            color: rgb(254, 254, 255);
+            text-decoration: underline;
+            text-decoration-color: rgba(225, 251, 152, 0.808);
+        }
+
+        .img-wrapper {
+            position: relative;
+            width: 1000px;
+            height: 400px;
+            margin: auto;
+            border: 1px solid rgb(92, 92, 190);
+            text-align: center;
+        }
+
+        .img-wrapper > img {
+            width: 800px;
+            height: 400px;
+        }
+
+        button {
+            position: absolute;
+            top: 50%;
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+        }
+
+        .btn-prev {left: 10px;}
+        .btn-next {right: 10px;}
+    </style>
+</head>
+<body>
+    <h1>Image Slider</h1>
+    <div class="header-left">
+        <img src="https://cgv.co.kr/_next/image?url=https%3A%2F%2Fcdn.cgv.co.kr%2Fcgvpomscontent%2Fstatic%2Fpublic%2Fimages%2Fmco%2Flogo%2Flogo_cgv.png&w=256&q=75" alt="">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Join</a></li>
+        </ul>
+    </div>
+    <hr>
+    <h2>Image Slider</h2>
+    <div class="img-wrapper">
+        <img src="../HTML/images/background_img2.png" alt="">
+        <button class="btn-prev">Prev</button>
+        <button class="btn-next">Next</button>
+
+    </div>
+</body>
+</html>
