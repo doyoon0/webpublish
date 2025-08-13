@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {box-sizing: border-box;}
+        .wrapper {
+            width: 1200px;
+            margin: auto;
+        }
+        aside {
+            /* border: 1px solid slateblue; */
+            width: 200px;
+            height: 600px;
+            padding-left: 50px;
+            background-color: bisque;
+            float: left;
+        }
+        aside img {
+            width: 120px;
+        }
+        aside ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+        }
+        aside ul li {
+            /* border: 1px solid salmon; */
+            padding: 15px 0;
+        }
+        aside ul li a {
+            text-decoration: none;
+            color: navy;
+        }
+        main {
+            width: 1000px;
+            height: 600px;
+            background-color: beige;
+            display: flex;
+        }
+        @media screen and (max-width:1000px) {
+            aside { display:none;}
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <aside>
+            <img src="https://cgv.co.kr/_next/image?url=https%3A%2F%2Fcdn.cgv.co.kr%2Fcgvpomscontent%2Fstatic%2Fpublic%2Fimages%2Fmco%2Flogo%2Flogo_cgv.png&w=256&q=75" alt="cgv logo">
+            <ul>
+                <li>
+                    <a href="#">홈</a>
+                </li>
+                <li>
+                    <a href="#">씨네톡</a>
+                </li>
+                <li>
+                    <a href="#">예매, 예약</a>
+                </li>
+                <li>
+                    <a href="#">매점</a>
+                </li>
+                <li>
+                    <a href="#">더보기</a>
+                </li>
+                <li>
+                    <a href="#">상영관 찾기</a>
+                </li>
+                <li>
+                    <a href="#">특별관</a>
+                </li>
+            </ul>
+        </aside>
+        <main>
+            <h1>Main Content</h1>
+        </main>
+    </div>
+</body>
+</html>

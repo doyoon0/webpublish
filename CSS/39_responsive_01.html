@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @media screen and (max-width: 767px) {
+            #wrapper {
+                background-color: pink;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1023px) {
+            #wrapper {
+                background-color: palegreen;
+            }
+            
+            #wrapper header {
+                display: none;
+            }
+        }
+
+        @media screen and (min-width: 1024px) {
+            #wrapper {
+                background-color: salmon;
+            }                
+        }
+    </style>
+</head>
+<body>
+    <h1>Responsive - 반응형</h1>
+    <div id="wrapper">
+        <header>
+            <h1>Header</h1>
+        </header>
+        <main>
+            <h1>Main</h1>
+        </main>
+        <footer>
+            <h1>Footer</h1>
+        </footer>
+    </div>
+</body>
+</html>
