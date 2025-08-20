@@ -16,3 +16,18 @@ let dnumber = 100.123;
 console.log(number);
 console.log(dnumber);
 
+//flag 변수에 true 저장
+let flag = true;
+console.log(flag);
+
+//name1 다른 값을 저장하는 경우? 
+name1 = 200;
+console.log("name1--> ", name1);
+
+//상수값으로 정의 후 사용
+const cname = "홍길동";
+// cname = "이순신";  //에러 발생 :: const는 변수값을 재정의할 수 없다!!!
+console.log("cname--> ", cname);
+
+ 
+
