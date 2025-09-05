@@ -28,17 +28,22 @@
                     <li>
                         <div class="login-form-input">
                             <i class="fa-regular fa-user"></i>
-                            <input type="text" name="id" placeholder="아이디를 입력해주세요" id="id">
+                            <input type="text" name="id" 
+                                    id="id" placeholder="아이디를 입력해주세요">
                         </div>
                     </li>
                     <li>
                         <div class="login-form-input">
                             <i class="fa-solid fa-lock"></i>
-                            <input type="password" name="pwd" placeholder="비밀번호를 입력해주세요" id="pwd">
+                            <input type="password" name="pwd" 
+                                    id="pwd" placeholder="비밀번호를 입력해주세요">
                         </div>
                     </li>
                     <li>
-                        <button class="btn-main-color" onchange="loginCheck()">로그인</button>
+                        <button type="button"
+                                class="btn-main-color"
+                                onclick="loginCheck()"
+                                >로그인</button>
                     </li>
                     <li>
                         <div>
