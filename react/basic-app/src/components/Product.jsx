@@ -96,7 +96,7 @@ export function BestProductContent({title, sale, price, like}) {
  * 베스트 상품 이미지 컴포넌트
  */
 export function BestProductImage({img, style, rank, like, cartCount}) {
-    const handleAddCart = () => { //이벤트는 지금 현재 컴포넌트에
+    const handleAddCart = () => { //이벤트는 지금 현재 컴포넌트에서 작성해야함(요기)
         cartCount();
     }
     return (
