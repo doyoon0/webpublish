@@ -1,4 +1,7 @@
 import {useState, useEffect} from "react";
+import { fetchData } from '../util/commonData.js';
+import { BestProductImage } from "./shared/BestProductImage.jsx";
+import { BestProductContent } from "./shared/BestProductContent.jsx";
 
 /**
  * 베스트 상품 컴포넌트
@@ -14,22 +17,15 @@ export function BestProduct() {
     //그 데이터를 컴포넌트 상태로 관리하려면 useState를 통해 선언한 변수에 setState로 넣어야 한다.
     const [bestProductList, setBestProductList] = useState([]); 
 
-    //컴포넌트 호출 시 데이터 로딩, 비동기 처리 --> useEffect Hooks 함수
+    //fetch 함수 생성 (비동기 이슈 때문에 함수로 생성)
     useEffect(()=>{
-        // [방법 1.]
-        // fetch("/data/best_product.json")
-        //     .then(response => response.json())
-        //     .then(jsonData => setBestProductList(jsonData))
-        //     .catch(error => console.log(error));
-
-        // [방법 2.]
-        const fetchData = async () => {
-            const response = await fetch("/data/best_product.json");
-            const jsonData = await response.json();
-            setBestProductList(jsonData);
+        const fetch = async() => {
+            const result = await fetchData("/data/best_product.json"); //return 하도록 수정.
+            setBestProductList(result);
         }
 
-        fetchData();
+        fetch();
+
     }, []);
 
     return (
@@ -66,54 +62,20 @@ export function BestProductItem({item, cartCount}) {
                                 style={{width: "200px", height: "250px"}}
                                 rank={item.rank}
                                 like={item.like}
+                                icon={item.icon}
+                                icon_style={item.icon_style}
                                 cartCount={cartCount} />
                 <BestProductContent
                                 title={item.title}
                                 sale={item.sale}
                                 price={item.price}
-                                like={item.like}/>
+                                like={item.like}
+                                icon={item.icon}/>
             </div>
         }
         </>
     );
 }
 
-/**
- * 베스트 상품 컨텐츠 컴포넌트
- */
-export function BestProductContent({title, sale, price, like}) {
-    return(
-        <div className="best-product-content">
-            <p className="title">{title}</p>
-            <span className="sale">{sale}</span>
-            <span className="price">{price}</span>
-            { like ? <span className="like">🤍</span> : "" }
-        </div>
-    );
-}
 
-/**
- * 베스트 상품 이미지 컴포넌트
- */
-export function BestProductImage({img, style, rank, like, cartCount}) {
-    const handleAddCart = () => { //이벤트는 지금 현재 컴포넌트에서 작성해야함(요기)
-        cartCount();
-    }
-    return (
-        <div className="best-product-img">
-            <ProductImage img={img} style={style} />
-            <span className="no">{rank}</span>
-            { like ? <span className="cart" onClick={handleAddCart}>🛒</span> : "" }
-        </div>
-    );
-}
 
-/**
- * 상품 이미지 컴포넌트
- */
-export function ProductImage({img,style}) {
-    const {width, height} = style;
-    return (
-        <img src={img} style={{width:width, height:height}}/>
-    );
-}
