@@ -1,16 +1,17 @@
 import { AvatarImage} from "../base/Avatar.jsx"
 
 export function Home({data}) {
+    const {img, name, title, description} = data;
     return (
         <section id="home">
-            <AvatarImage img="/images/favicon.ico"
+            <AvatarImage img={img}
                          msg="home-avatar"
                          style="home-avatar" />
             <h2 className="home-title">
                 Hello <br /> 
-                I'm <strong className="home-title strong">{data.title}</strong>, {data.name}
+                I'm <strong className="home-title strong">{title}</strong>, {name}
             </h2>
-            <p className="home-description">{data.description}</p>
+            <p className="home-description">{description}</p>
             <a className="home-contact" href="#">contact me</a>
         </section>
     );
