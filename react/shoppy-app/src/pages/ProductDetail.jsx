@@ -4,6 +4,10 @@ import { axiosData } from '../utils/dataFetch.js'
 import { PiGiftThin } from "react-icons/pi";
 import { ImageList } from '../components/commons/ImageList.jsx';
 import { StarRating } from '../components/commons/StarRating.jsx';
+import { Detail, DetailImages, DetailInfo } from '../components/detailTabs/Detail.jsx';
+import { Review } from '../components/detailTabs/Review.jsx';
+import { QnA } from '../components/detailTabs/QnA.jsx';
+import { Return } from '../components/detailTabs/Return.jsx';
 
 export function ProductDetail({ addCart }) {
     const { pid } = useParams(); //객체로 이 보따리에 담아주면 구조분해할당으로 풀어본다
@@ -91,6 +95,11 @@ export function ProductDetail({ addCart }) {
                         </li>
                     )}
                 </ul>
+                    {tabName === "detail" && <Detail imgList={imgList} info={product.detailInfo} />}
+                    {tabName === "review" && <Review />}
+                    {tabName === "q&a" && <QnA />}
+                    {tabName === "return" && <Return />}
+
             </div>
             <div style={{marginBottom:"50px"}}></div>
 

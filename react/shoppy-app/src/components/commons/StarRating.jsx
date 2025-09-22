@@ -38,6 +38,14 @@ export function StarRating({ totalRate, style }) {
             {style === "star-coral" && (
                 <span className={`${style} number`}>{totalRate}</span>
             )}
+
+            {/* 숫자 별점 - 리뷰 */}
+            {style === "star-black-big" && (
+                <>
+                <span className={`${style} number`}>{totalRate} /</span>
+                <span className={`${style} tot-number`}>5</span>
+                </>
+            )}
         </div>
     );
 }
