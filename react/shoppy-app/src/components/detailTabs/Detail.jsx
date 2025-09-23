@@ -5,7 +5,7 @@ import { ImageList } from '../commons/ImageList.jsx';
  * ProductDetail > Detail
  */
 export function Detail({ imgList, info }) {
-    console.log('detail-->', imgList, info);
+    // console.log('detail-->', imgList, info);
 
     return (
         <div>
@@ -32,7 +32,7 @@ export function DetailImages({ imgList }) {
  * ProductDetail > Detail > DetailInfo
  */
 export function DetailInfo({ info }) {
-    console.log('info--->', info);
+    // console.log('info--->', info);
 
     return (
         <div className='detail-info'>
