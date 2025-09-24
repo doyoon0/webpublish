@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './styles/cgvSignup.css';
-import './styles/commons.css';
 import './styles/cgv.css';
+import './styles/commons.css';
 import './styles/shoppy.css';
 import { Layout } from './pages/Layout.jsx';
 import { Home } from './pages/Home.jsx';
@@ -12,6 +12,8 @@ import { ProductDetail } from './pages/ProductDetail.jsx';
 import { Cart } from './pages/Cart.jsx';
 import { useState } from 'react';
 import { cartItemsCheck, updateCartItemsQty } from './utils/cart.js';
+import { CheckoutInfo } from './pages/CheckoutInfo.jsx';
+import { Support } from './pages/Support.jsx';
 
 export default function App() {
   //1. 장바구니 수량 관리 : setCartCount
@@ -59,6 +61,8 @@ export default function App() {
           <Route path='/signup' element={<Signup />} />
           <Route path='/cart' element={<Cart items={cartItems} updateCart={updateCart} />} />
           <Route path='/products/:pid' element={<ProductDetail addCart={addCart} />} />
+          <Route path='/checkout' element={<CheckoutInfo />} />
+          <Route path='/support' element={<Support />} />
         </Route>
       </Routes>
     </BrowserRouter>
