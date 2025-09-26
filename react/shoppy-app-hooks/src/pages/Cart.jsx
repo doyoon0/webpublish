@@ -1,62 +1,17 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import { axiosData } from '../utils/dataFetch.js'
-import { cartItemsAddInfo, getTotalPrice } from '../utils/cart.js';
 import '../styles/cart.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext.js';
 import { useCart } from '../hooks/useCart.js';
 
-// export function Cart({ items, updateCart }) {
-export function Cart({ updateCart }) {
+export function Cart() {
     const navigate = useNavigate(); //App.js에 정의된 전체 router들을 알고있다는 뜻
+    const {cartList, totalPrice} = useContext(CartContext);
+    const {showCart, updateCart, removeCart} = useCart();
 
-    // const [cartList, setCartList] = useState([]);
-    const [totalPrice, setTotalPrice] = useState(0);
+    useEffect(() => { showCart(); }, []);
 
-    const {cartList} = useContext(CartContext);
-    const {showCart} = useCart();
-
-
-    useEffect(() => {
-        showCart();
-    }, []);
-/*
-    //수량 및 금액 업데이트 함수
-    const handleUpdateCartList = (cid, type) => {
-        // 수량 업데이트
-        setCartList((cartList) => cartList.map((item) =>
-            item.cid === cid ? //cid 같은지 체크(1)
-                type === '+' ? { ...item, qty: item.qty + 1 } : //type이 +/- 체크(2)
-                    item.qty > 1 ? //qty가 1보다 큰지 체크(3)
-                        { ...item, qty: item.qty - 1 } :
-                        item
-                : item
-        ));
-
-        //금액 업데이트
-        const findItem = cartList.find((item) => item.cid === cid); //해당 아이템 찾음(1)
-        type === '+' ? //type이 +/- 체크(2)
-            setTotalPrice(totalPrice + findItem.price) : //찾았으면 금액증가(3)
-            findItem.qty > 1 ? //수량이 1개 이상인지(4) => 아니라면 delete해야하니까
-                setTotalPrice(totalPrice - findItem.price) : //1개 이상이면 금액 - (5)
-                setTotalPrice(totalPrice) //1개 이하면 더 뺄수없고 가격 그대로 (6 마지막) 
-        updateCart(cid, type); //장바구니 아이콘 위의 수량 변경(App.js)
-    }
-
-    //장바구니 아이템 삭제 함수
-    const handleRemoveCartList = (cid) => {
-        const findItem = cartList.find((item) => item.cid === cid); //해당하는 아이템 찾기
-        setTotalPrice(totalPrice - (findItem.qty * findItem.price)); //몇 개가 있든 한번에 삭제
-
-        //cartList 다시 불러와야함(초기값은 빈배열임)
-        setCartList((cartList) => {
-            return cartList.filter(item => !(item.cid === cid)); //삭제한것 제외하고 전부 
-        });
-
-        updateCart(cid); //장바구니 아이콘 위의 수량 변경(App.js)
-    }
-*/
     return (
         <div className='cart-container'>
             <h2 className='cart-header'>장바구니</h2>
@@ -70,23 +25,23 @@ export function Cart({ updateCart }) {
                             <p className='cart-item-title'>{item.size}</p>
                             <p className='cart-item-price'>{parseInt(item.price).toLocaleString()}원</p>
                         </div>
-                        {/* <div className='cart-quantity'>
+                        <div className='cart-quantity'>
                             <button type='button'
-                                onClick={() => { item.qty > 1 && handleUpdateCartList(item.cid, '-') }}>-</button>
+                                onClick={() => { item.qty > 1 && updateCart(item.cid, '-') }}>-</button>
                             <input type='text' value={item.qty} readOnly />
                             <button type='button'
-                                onClick={() => { handleUpdateCartList(item.cid, '+') }}>+</button>
+                                onClick={() => { updateCart(item.cid, '+') }}>+</button>
                         </div>
                         <button className='cart-remove'
-                            onClick={() => { handleRemoveCartList(item.cid) }}>
+                            onClick={() => { removeCart(item.cid, item.qty, item.price) }}>
                             <RiDeleteBin6Line />
-                        </button> */}
+                        </button>
                     </div>
                 </div>
             )}
 
             {/* 주문 버튼 출력 */}
-            {/* {
+            {
                 cartList && cartList.length > 0 ?
                     <>
                         <div className='cart-summary'>
@@ -126,7 +81,7 @@ export function Cart({ updateCart }) {
                         </p>
                         <img src="/images/cart.jpg" style={{ width: "50%", marginTop: "20px" }} />
                     </div>
-            } */}
+            }
         </div>
     );
 }
