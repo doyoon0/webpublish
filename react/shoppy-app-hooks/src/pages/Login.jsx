@@ -1,11 +1,14 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
 import { FaRegUser } from "react-icons/fa6";
 import { FaLock } from "react-icons/fa";
 import { validateFormCheck } from '../utils/validate.js';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.js';
+import { AuthContext } from '../context/AuthContext.js';
 
 export function Login() {
+    const { isLogin } = useContext(AuthContext);
+
     const { handleLogin } = useAuth();
     const navigate = useNavigate();
     const idRef = useRef(null);
@@ -96,7 +99,7 @@ export function Login() {
                         <li>
                             <div>
                                 <input type="checkbox" name="status" />
-                                <label for="">아이디 저장</label>
+                                <label htmlFor="">아이디 저장</label>
                             </div>
                             <div>
                                 <a href="#">아이디 찾기</a>
