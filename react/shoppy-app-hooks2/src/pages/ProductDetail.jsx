@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { axiosData } from '../utils/dataFetch.js'
 import { PiGiftThin } from "react-icons/pi";
@@ -9,28 +9,22 @@ import { Review } from '../components/detailTabs/Review.jsx';
 import { QnA } from '../components/detailTabs/QnA.jsx';
 import { Return } from '../components/detailTabs/Return.jsx';
 import { useCart } from '../hooks/useCart.js';
+import { useProduct } from '../hooks/useProduct.js';
+import { ProductContext } from '../context/ProductContext.js';
 
 export function ProductDetail() {
     const { pid } = useParams(); //객체로 이 보따리에 담아주면 구조분해할당으로 풀어본다
-    const [product, setProduct] = useState({});
     const [size, setSize] = useState('XS');
-    const [imgList, setImgList] = useState([]);
     const tabLabels = ['DETAIL', 'REVIEW', 'Q&A', 'RETURN & DELIVERY'];
     const [tabName, setTabName] = useState('detail');
     const tabEventNames = ['detail', 'review', 'q&a', 'return'];
 
     const { addCart } = useCart(); 
+    const { filterProduct } = useProduct();
+    const { product, imgList } = useContext(ProductContext);
 
     useEffect(() => {
-        const filterData = async () => {
-            const jsonData = await axiosData("/data/products.json");
-            const [filterProduct] = jsonData.filter((item) => item.pid === pid);
-
-            setProduct(filterProduct);
-            setImgList(filterProduct.imgList);
-        }
-
-        filterData();
+        filterProduct(pid);
     }, []);
 
     //쇼핑백 추가하기
