@@ -5,13 +5,15 @@ import { GiShoppingCart } from "react-icons/gi";
 import { CartContext } from '../../context/CartContext.js';
 import { AuthContext } from '../../context/AuthContext.js';
 import { useAuth } from '../../hooks/useAuth.js';
+import { useSelector } from 'react-redux';
 
 
 // export function Header({cartCount}) {
 export function Header() {
-    const { cartCount } = useContext(CartContext); //구조분해할당으로 받음
     const { isLogin } = useContext(AuthContext);
     const { handleLogout} = useAuth();
+
+    const cartCount = useSelector((state) => state.cart.cartCount);
 
     return (
         <div className="header-outer">

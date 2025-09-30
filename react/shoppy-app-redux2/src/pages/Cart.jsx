@@ -5,12 +5,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext.js';
 import { useCart } from '../hooks/useCart.js';
 
-export function Cart() {
-    const navigate = useNavigate(); //App.js에 정의된 전체 router들을 알고있다는 뜻
-    const {cartList, totalPrice} = useContext(CartContext);
-    const {showCart, updateCart, removeCart} = useCart();
+import { useDispatch, useSelector} from 'react-redux';
+import { showCart, updateCart, removeCart } from '../feature/cart/cartAPI.js';
 
-    useEffect(() => { showCart(); }, []);
+export function Cart() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate(); //App.js에 정의된 전체 router들을 알고있다는 뜻
+    const cartList = useSelector((state) => state.cart.cartList);
+    const totalPrice = useSelector((state) => state.cart.totalPrice);
+
+    useEffect(() => { dispatch(showCart()); }, []);
 
     return (
         <div className='cart-container'>
@@ -27,13 +31,13 @@ export function Cart() {
                         </div>
                         <div className='cart-quantity'>
                             <button type='button'
-                                onClick={() => { item.qty > 1 && updateCart(item.cid, '-') }}>-</button>
+                                onClick={() => { item.qty > 1 && dispatch(updateCart(item.cid, '-')) }}>-</button>
                             <input type='text' value={item.qty} readOnly />
                             <button type='button'
-                                onClick={() => { updateCart(item.cid, '+') }}>+</button>
+                                onClick={() => { dispatch(updateCart(item.cid, '+')) }}>+</button>
                         </div>
                         <button className='cart-remove'
-                            onClick={() => { removeCart(item.cid, item.qty, item.price) }}>
+                            onClick={() => { dispatch(removeCart(item.cid)) }}>
                             <RiDeleteBin6Line />
                         </button>
                     </div>

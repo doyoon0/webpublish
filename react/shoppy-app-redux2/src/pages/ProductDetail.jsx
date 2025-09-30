@@ -12,9 +12,13 @@ import { useCart } from '../hooks/useCart.js'
 import { useProduct } from '../hooks/useProduct.js';
 import { ProductContext } from '../context/ProductContext.js';
 
+import { useDispatch } from 'react-redux';
+import { addCart } from '../feature/cart/cartAPI.js';
+
 // export function ProductDetail({ addCart }) {
 export function ProductDetail() {
-    const { addCart } = useCart(); //useCart.js에 선언된 변수랑 이름 맞춰야함
+    const dispatch = useDispatch();
+
     const { filterProduct } = useProduct();
     const { product, imgList} = useContext(ProductContext);
 
@@ -36,7 +40,7 @@ export function ProductDetail() {
             size: size,
             qty: 1
         }
-        addCart(cartItem);
+        dispatch(addCart(cartItem));
     }
 
     return (
