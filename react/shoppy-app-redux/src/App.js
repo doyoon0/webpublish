@@ -31,7 +31,9 @@ export default function App() {
                 <Route path='/login' element={<Login />} /> {/* 얘만 감싸려면 <Login /> 앞뒤로 붙여주면 됨*/}
                 <Route path='/signup' element={<Signup />} />
                 <Route path='/cart' element={
+                  <ProtectedPageRoute>
                     <Cart />
+                  </ProtectedPageRoute>
                 } />
                 <Route path='/products/:pid' element={<ProductDetail />} />
                 <Route path='/checkout' element={

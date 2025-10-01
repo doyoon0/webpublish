@@ -6,10 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.js';
 import { AuthContext } from '../context/AuthContext.js';
 
-export function Login() {
-    const { isLogin } = useContext(AuthContext);
+import { useDispatch, useSelector } from 'react-redux';
+import { getLogin } from '../feature/auth/authAPI.js';
 
-    const { handleLogin } = useAuth();
+export function Login() {
+    const dispatch = useDispatch();
+
+    // const { handleLogin } = useAuth();
     const navigate = useNavigate();
     const idRef = useRef(null);
     const pwdRef = useRef(null);
@@ -35,6 +38,20 @@ export function Login() {
     //     return true;
     // }
 
+    // if (validateFormCheck(param)) {
+    //     // console.log('서버전송 ---> ', formData);  
+    //     const did = "test";
+    //     const dpwd = "1234";
+    //     if (did === formData.id && dpwd === formData.pwd) {
+    //         alert("로그인에 성공하셨습니다.");
+    //         handleLogin(formData.id);
+    //         navigate("/");
+    //     } else {
+    //         alert("로그인에 실패, 확인후 다시 진행해주세요.");
+    //         idRef.current.focus();
+    //     }
+    // }
+    
     const handleLoginSubmit = (e) => {
         e.preventDefault();
         const param = {
@@ -43,18 +60,15 @@ export function Login() {
             setErrors: setErrors,
             errors: errors
         }
-        if (validateFormCheck(param)) {
-            // console.log('서버전송 ---> ', formData);  
-            const did = "test";
-            const dpwd = "1234";
-            if (did === formData.id && dpwd === formData.pwd) {
-                handleLogin(formData.id);
-                alert("로그인에 성공하셨습니다.");
-                navigate("/");
-            } else {
-                alert("로그인에 실패, 확인후 다시 진행해주세요.");
-                idRef.current.focus();
-            }
+
+        const succ = dispatch(getLogin(formData, param)); //비동기식 처리 후 isLogin 변경
+        // console.log('isLogin2 -->' , isLogin); //동기식 처리 -> false
+        if (succ) {
+            alert("로그인에 성공하셨습니다.");
+            navigate("/");
+        } else {
+            alert("로그인에 실패, 확인후 다시 진행해주세요.");
+            idRef.current.focus();
         }
     }
 

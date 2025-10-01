@@ -23,7 +23,7 @@ export const showCart = () => async (dispatch) => {
 }
 
 // cartAPI.js 또는 actions.js
-export const addCart = (cartItem) => async (dispatch) => {
-    dispatch(addCartItem({ "cartItem": cartItem }));
+export const addCart = (pid, size) => async (dispatch) => {
+    dispatch(addCartItem({ "cartItem": {"pid": pid, "size": size, "qty": 1} }));
     dispatch(updateCartCount());
 };
