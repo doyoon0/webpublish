@@ -1,47 +1,31 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { axiosData } from '../utils/dataFetch.js'
 import { PiGiftThin } from "react-icons/pi";
 import { ImageList } from '../components/commons/ImageList.jsx';
 import { StarRating } from '../components/commons/StarRating.jsx';
-import { Detail, DetailImages, DetailInfo } from '../components/detailTabs/Detail.jsx';
+import { Detail } from '../components/detailTabs/Detail.jsx';
 import { Review } from '../components/detailTabs/Review.jsx';
 import { QnA } from '../components/detailTabs/QnA.jsx';
 import { Return } from '../components/detailTabs/Return.jsx';
-import { useCart } from '../hooks/useCart.js'
-import { useProduct } from '../hooks/useProduct.js';
-import { ProductContext } from '../context/ProductContext.js';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addCart } from '../feature/cart/cartAPI.js';
+import { getProduct } from '../feature/product/productAPI.js'
 
-// export function ProductDetail({ addCart }) {
 export function ProductDetail() {
-    const dispatch = useDispatch();
-
-    const { filterProduct } = useProduct();
-    const { product, imgList} = useContext(ProductContext);
-
     const { pid } = useParams(); //객체로 이 보따리에 담아주면 구조분해할당으로 풀어본다
+    const dispatch = useDispatch();
+    const product = useSelector((state) => state.product.product);
+    const imgList = useSelector((state) => state.product.product.imgList);
+
     const [size, setSize] = useState('XS');
     const tabLabels = ['DETAIL', 'REVIEW', 'Q&A', 'RETURN & DELIVERY'];
     const [tabName, setTabName] = useState('detail');
     const tabEventNames = ['detail', 'review', 'q&a', 'return'];
 
     useEffect(() => {
-        filterProduct(pid);
+        dispatch(getProduct(pid));
     }, []);
-
-    //쇼핑백 추가하기
-    const handleAddCartItem = () => {
-        // alert("상품이 카트에 추가되었습니다.");
-        const cartItem = {
-            pid: product.pid,
-            size: size,
-            qty: 1
-        }
-        dispatch(addCart(cartItem));
-    }
 
     return (
         <div className='content'>
@@ -75,7 +59,7 @@ export function ProductDetail() {
                     </li>
                     <li className='flex'>
                         <button type='button' className='product-detail-button order'>바로 구매</button>
-                        <button type='button' className='product-detail-button cart' onClick={handleAddCartItem}>쇼핑백 담기</button>
+                        <button type='button' className='product-detail-button cart' onClick={() => { dispatch(addCart(product.pid, size)) }}>쇼핑백 담기</button>
                         <div type='button' className='gift'>
                             <PiGiftThin />
                             <div className='gift-span'>선물하기</div>
@@ -92,18 +76,18 @@ export function ProductDetail() {
             <div className='product-detail-tab'>
                 <ul className='tabs'>
                     {tabLabels && tabLabels.map((label, i) =>
-                        <li className={tabName === tabEventNames[i] ? "active":"" }>
+                        <li className={tabName === tabEventNames[i] ? "active" : ""}>
                             <button type='button' onClick={(e) => setTabName(tabEventNames[i])}>{label}</button>
                         </li>
                     )}
                 </ul>
-                    {tabName === "detail" && <Detail imgList={imgList} info={product.detailInfo} />}
-                    {tabName === "review" && <Review />}
-                    {tabName === "q&a" && <QnA />}
-                    {tabName === "return" && <Return />}
+                {tabName === "detail" && <Detail imgList={imgList} info={product.detailInfo} />}
+                {tabName === "review" && <Review />}
+                {tabName === "q&a" && <QnA />}
+                {tabName === "return" && <Return />}
 
             </div>
-            <div style={{marginBottom:"50px"}}></div>
+            <div style={{ marginBottom: "50px" }}></div>
 
         </div>
     );

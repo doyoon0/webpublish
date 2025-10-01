@@ -5,14 +5,19 @@ import { fetchData, axiosData, groupByRows } from '../../utils/dataFetch.js'
 import { useProduct } from '../../hooks/useProduct.js';
 import { ProductContext } from '../../context/ProductContext.js';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { getProductList } from '../../feature/product/productAPI.js';
+
 export function ProductList() {
-    const { productList } = useContext(ProductContext);
-    const {createProduct} = useProduct();
+    // const { productList } = useContext(ProductContext);
+    // const {createProduct} = useProduct();
     const [number, setNumber] = useState(3);
 
+    const dispatch = useDispatch();
+    const productList = useSelector((state) => state.product.productList);
+
     useEffect(() => {
-        //1. createProduct
-        createProduct(number);
+        dispatch(getProductList(number));
     }, [number]);
 
     return (

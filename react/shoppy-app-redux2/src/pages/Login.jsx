@@ -6,16 +6,20 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.js';
 import { AuthContext } from '../context/AuthContext.js';
 
-export function Login() {
-    const { isLogin } = useContext(AuthContext);
+import { useDispatch, useSelector } from 'react-redux';
+import { getLogin } from '../feature/auth/authAPI.js'; 
 
+export function Login() {
+    
     const { handleLogin } = useAuth();
     const navigate = useNavigate();
     const idRef = useRef(null);
     const pwdRef = useRef(null);
     const [formData, setFormData] = useState({ id: '', pwd: '' });
     const [errors, setErrors] = useState({ id: '', pwd: '' });
-
+    
+    const dispatch = useDispatch();
+    
     const handleFormChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
