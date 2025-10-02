@@ -1,7 +1,9 @@
-import { } from './authSlice.js'
+import { validateFormCheck } from '../../utils/validate.js';
+import { login, logout } from '../../feature/auth/authSlice.js'
 
-export const getLogin = (formData) => async (dispatch) => {
-    if (validateFormCheck()) {
+export const getLogin = (formData, param) => async (dispatch) => {
+
+    if (validateFormCheck(param)) {
         if ("test" === formData.id && "1234" === formData.pwd) {
             dispatch(login({"userId": formData.id}));
             return true;
