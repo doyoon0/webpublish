@@ -49,8 +49,6 @@ export function ProductDetail() {
         
     // }
 
-    console.log("lookt at meeee======>", JSON.stringify(product));
-
     return (
         <div className='content'>
             <div className='product-detail-top'>

@@ -1,13 +1,12 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { useSelector } from "react-redux";
 import "../styles/cart.css";
 import "../styles/checkoutinfo.css";
 
 export function CheckoutInfo() {
-    // const { state } = useLocation();
-    const {cartList, totalPrice} = useContext(CartContext);
-    // const [orderList, setOrderList] = useState(state.cartList);
-    // console.log('state==>>', state);
+    const cartList = useSelector((state) => state.cart.cartList);
+    const totalPrice = useSelector((state) => state.cart.totalPrice);
 
     return (
         <div className="cart-container">
@@ -75,70 +74,70 @@ export function CheckoutInfo() {
                 </div>
             </div>
 
-            <div class="section">
+            <div className="section">
                 <h2>결제정보</h2>
-                <table class="payment-table">
+                <table className="payment-table">
                     <tr>
                         <td>총상품가격</td>
-                        <td class="price">{totalPrice.toLocaleString()}원</td>
+                        <td className="price">{totalPrice.toLocaleString()}원</td>
                     </tr>
                     <tr>
                         <td>즉시할인</td>
-                        <td class="discount">-0원</td>
+                        <td className="discount">-0원</td>
                     </tr>
                     <tr>
                         <td>할인쿠폰</td>
-                        <td class="coupon">
-                            0원 <span class="info">적용 가능한 할인쿠폰이 없습니다.</span>
+                        <td className="coupon">
+                            0원 <span className="info">적용 가능한 할인쿠폰이 없습니다.</span>
                         </td>
                     </tr>
                     <tr>
                         <td>배송비</td>
-                        <td class="price">0원</td>
+                        <td className="price">0원</td>
                     </tr>
                     <tr>
                         <td>쿠페이캐시</td>
-                        <td class="price">
-                            0원 <span class="info">보유 : 0원</span>
+                        <td className="price">
+                            0원 <span className="info">보유 : 0원</span>
                         </td>
                     </tr>
-                    <tr class="total">
+                    <tr className="total">
                         <td>총결제금액</td>
-                        {/* <td class="total-price">{totalPrice.toLocaleString()}원</td> */}
+                        {/* <td className="total-price">{totalPrice.toLocaleString()}원</td> */}
                     </tr>
                 </table>
             </div>
 
-            <div class="section">
+            <div className="section">
                 <h2>결제 수단</h2>
-                <div class="payment-method">
-                    <label class="radio-label">
+                <div className="payment-method">
+                    <label className="radio-label">
                         <input type="radio" name="payment" checked /> 카카오페이
-                        <span class="badge">최대 캐시적립</span>
+                        <span className="badge">최대 캐시적립</span>
                     </label>
                 </div>
 
-                <div class="payment-method">
-                    <label class="radio-label">
+                <div className="payment-method">
+                    <label className="radio-label">
                         <input type="radio" name="payment" />
                         쿠페이 머니
                     </label>
                 </div>
 
-                <div class="payment-method">
-                    <label class="radio-label">
+                <div className="payment-method">
+                    <label className="radio-label">
                         <input type="radio" name="payment" />
-                        다른 결제 수단 <span class="arrow">▼</span>
+                        다른 결제 수단 <span className="arrow">▼</span>
                     </label>
                 </div>
             </div>
 
-            <div class="terms">
+            <div className="terms">
                 <input type="checkbox" id="terms" />
-                <label for="terms">구매조건 확인 및 결제대행 서비스 약관 동의</label>
+                <label htmlFor="terms">구매조건 확인 및 결제대행 서비스 약관 동의</label>
                 <br />
                 <input type="checkbox" id="privacy" />
-                <label for="privacy">개인정보 국외 이전 동의</label>
+                <label htmlFor="privacy">개인정보 국외 이전 동의</label>
             </div>
 
             <button className="pay-button">결제하기</button>
